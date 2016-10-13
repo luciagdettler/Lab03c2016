@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ar.edu.utn.frsf.isi.dam.MainActivity">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/opc1"
         android:title="Postularse a esta oferta"
@@ -10,6 +8,7 @@
         android:id="@+id/opc2"
         android:title="Compartir esta oferta"
         />
+
 
 </menu>
 

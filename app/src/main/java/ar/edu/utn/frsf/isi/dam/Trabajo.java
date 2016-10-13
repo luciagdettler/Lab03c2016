@@ -112,7 +112,7 @@ import java.util.Random;
                 new Trabajo(2,"Sistema de Gestion"),
                 new Trabajo(3, "Aplicacion XYZ"),
                 new Trabajo(4,"Modulo NN1"),
-                new Trabajo(5,"Sistema de adminisracion TDF"),
+                new Trabajo(5,"Sistema de administracion TDF"),
                 new Trabajo(6,"Aplicacion OYU 66"),
                 new Trabajo(7,"Gestion de laboratorios"),
                 new Trabajo(8,"Sistema Universidades"),

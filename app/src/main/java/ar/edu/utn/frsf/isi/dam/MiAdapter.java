@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Usuario on 5/10/2016.
@@ -26,9 +29,23 @@ public class MiAdapter extends BaseAdapter {
     LayoutInflater inflater;
 
     public MiAdapter(Context context,Trabajo[] trabajos) {
-
         this.context = context;
         this.trab = trabajos;
+    }
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context c) {
+        context = c;
+    }
+
+    public Trabajo[] getTrabajos() {
+        return trab;
+    }
+
+    public void setTrabajos(Trabajo[] trabajos) {
+        trab = trabajos;
     }
 
    @Override
@@ -46,64 +63,68 @@ public class MiAdapter extends BaseAdapter {
         return 0;
     }
 
-    @TargetApi(Build.VERSION_CODES.N)
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        DecimalFormat df = new DecimalFormat("#.##");
-        View itemView=convertView;
-        if(itemView==null){
-            itemView = inflater.inflate(R.layout.list_row, parent, false);
+
+        Trabajo trabajo = (Trabajo) trab[position];
+        ViewHolder holder;
+        //View itemView=convertView;
+        if(convertView==null){
+            convertView = LayoutInflater.from(context).inflate(R.layout.list_row,null);
+            holder=new ViewHolder();
+
+            holder.moneda = (ImageView) convertView.findViewById(R.id.tipoMoneda);
+            holder.categoria = (TextView) convertView.findViewById(R.id.categoria);
+            holder.tituloProy = (TextView) convertView.findViewById(R.id.proyecto);
+            holder.hsmax= (TextView) convertView.findViewById(R.id.horasmax);
+            holder.preciohs= (TextView) convertView.findViewById(R.id.$xhora);
+            holder.fecha= (TextView) convertView.findViewById(R.id.fechafin);
+            holder.enIngles= (CheckBox) convertView.findViewById(R.id.ingles);
+
+            convertView.setTag(holder);
+
         }
-        ViewHolder holder = (ViewHolder) itemView.getTag();
-        if(holder==null){
-            holder=new ViewHolder(itemView);
-            itemView.setTag(holder);
-        }
-        TextView cat = (TextView) itemView.findViewById(R.id.categoria);
+        else
+            holder = (ViewHolder) convertView.getTag();
 
-        holder.tituloProy.setText(trab[position].getDescripcion());
 
-        holder.hsmax.setText("Horas: " + df.format(trab[position].getHorasPresupuestadas()) + " Max");
+        holder.categoria.setText(trabajo.getCategoria().getDescripcion());
 
-        holder.preciohs.setText("$/Hora"+df.format(trab[position].getPrecioMaximoHora()));
+        holder.tituloProy.setText(trabajo.getDescripcion());
 
-        holder.fecha.setText("Fecha Fin:"+ trab[position].getFechaEntrega());
+        //holder.hsmax.setText("Horas: " + df.format(trabajo.getHorasPresupuestadas()) + " Max");
 
-        if(trab[position].getRequiereIngles()==true)
+        //holder.preciohs.setText("$/Hora"+df.format(trabajo.getPrecioMaximoHora()));
+
+        holder.fecha.setText("Fecha Fin:"+ trabajo.getFechaEntrega());
+
+        if(trabajo.getRequiereIngles()==true)
             holder.enIngles.setChecked(true);
         else
             holder.enIngles.setChecked(false);
 
-        ImageView moneda=(ImageView) itemView.findViewById(R.id.tipoMoneda);
-        if(trab[position].getMonedaPago()==1)
+        if(trabajo.getMonedaPago()==1)
             holder.moneda.setImageResource(R.drawable.us);
-        else if(trab[position].getMonedaPago()==2)
+        else if(trabajo.getMonedaPago()==2)
             holder.moneda.setImageResource(R.drawable.eu);
-        else if(trab[position].getMonedaPago()==3)
+        else if(trabajo.getMonedaPago()==3)
             holder.moneda.setImageResource(R.drawable.ar);
-        else if(trab[position].getMonedaPago()==4)
+        else if(trabajo.getMonedaPago()==4)
             holder.moneda.setImageResource(R.drawable.uk);
-        if(trab[position].getMonedaPago()==5)
+        else if(trabajo.getMonedaPago()==5)
             holder.moneda.setImageResource(R.drawable.br);
 
-        return itemView;
+        return convertView;
     }
     class ViewHolder {
-        ImageView moneda=null;
-        TextView categoria=null;
-        TextView tituloProy=null;
-        TextView hsmax=null;
-        TextView preciohs=null;
-        TextView fecha=null;
-        CheckBox enIngles=null;
+        ImageView moneda;
+        TextView categoria;
+        TextView tituloProy;
+        TextView hsmax;
+        TextView preciohs;
+        TextView fecha;
+        CheckBox enIngles;
 
-        ViewHolder(View base) {
-            this.moneda = (ImageView) base.findViewById(R.id.tipoMoneda);
-            this.categoria = (TextView) base.findViewById(R.id.categoria);
-            this.tituloProy = (TextView) base.findViewById(R.id.proyecto);
-            this.hsmax= (TextView) base.findViewById(R.id.horasmax);
-            this.preciohs= (TextView) base.findViewById(R.id.$xhora);
-            this.fecha= (TextView) base.findViewById(R.id.fechafin);
-            this.enIngles= (CheckBox) base.findViewById(R.id.ingles);
-            }
+
     }
 }

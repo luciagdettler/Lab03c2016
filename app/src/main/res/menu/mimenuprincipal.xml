@@ -4,15 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ar.edu.utn.frsf.isi.dam.MainActivity">
     <item
-        android:id="@+id/idMenu1"
-        android:title="Menu1"
+        android:id="@+id/mp1"
+        android:title="Crear una oferta"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/menu2"
+        android:id="@+id/mp2"
         android:orderInCategory="100"
-        android:title="El Menu 2"
+        android:title="Ver mis ofertas"
         app:showAsAction="never" />
-    . . . . . //resto de las opciones
+    <item
+        android:id="@+id/mp3"
+        android:orderInCategory="100"
+        android:title="Configuracion"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mp4"
+        android:orderInCategory="100"
+        android:title="Salir"
+        app:showAsAction="never" />
 </menu>
 
 
