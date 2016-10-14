@@ -2,22 +2,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="#0d0d0d"
             android:id="@+id/categoria"
             android:text="Arquitecto"
-            android:textColor="@color/abc_background_cache_hint_selector_material_dark" />
+            android:textColor="#040404" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="#0d0d0d"
             android:id="@+id/proyecto"
             android:text="Proyecto ABC"
-            android:textColor="@color/abc_background_cache_hint_selector_material_dark" />
+            android:textColor="#040404" />
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -26,20 +25,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="#0d0d0d"
                 android:id="@+id/horasmax"
                 android:text="Horas:"
-                android:textColor="@color/abc_background_cache_hint_selector_material_dark" />
+                android:textColor="#040404" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="#0d0d0d"
                 android:id="@+id/$xhora"
                 android:text="$/hora:"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/abc_background_cache_hint_selector_material_dark" />
+                android:textColor="#040404" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -55,27 +52,25 @@
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="#0d0d0d"
             android:text="Fecha fin:"
             android:id="@+id/fechafin"
-            android:textColor="@color/abc_background_cache_hint_selector_material_dark" />
+            android:textColor="#040404" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="En Inglés"
             android:id="@+id/ingles"
+            android:checked="true"
+            android:textColor="#040404"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/fechafin"
-            android:layout_marginStart="124dp"
-            android:checked="false"
-            android:textColor="@color/abc_background_cache_hint_selector_material_dark"
-            android:textAppearance="#0d0d0d" />
+            android:clickable="false" />
     </RelativeLayout>
 
 </LinearLayout>

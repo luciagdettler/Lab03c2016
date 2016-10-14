@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.icu.text.DecimalFormat;
 import android.os.Build;
 import android.test.suitebuilder.TestMethod;
+import android.text.format.DateFormat;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -68,7 +70,6 @@ public class MiAdapter extends BaseAdapter {
 
         Trabajo trabajo = (Trabajo) trab[position];
         ViewHolder holder;
-        //View itemView=convertView;
         if(convertView==null){
             convertView = LayoutInflater.from(context).inflate(R.layout.list_row,null);
             holder=new ViewHolder();
@@ -92,11 +93,11 @@ public class MiAdapter extends BaseAdapter {
 
         holder.tituloProy.setText(trabajo.getDescripcion());
 
-        //holder.hsmax.setText("Horas: " + df.format(trabajo.getHorasPresupuestadas()) + " Max");
+        holder.hsmax.setText("Horas: " + trabajo.getHorasPresupuestadas() + " Max");
 
-        //holder.preciohs.setText("$/Hora"+df.format(trabajo.getPrecioMaximoHora()));
+        holder.preciohs.setText("$/Hora"+String.format("%.2f",trabajo.getPrecioMaximoHora()));
 
-        holder.fecha.setText("Fecha Fin:"+ trabajo.getFechaEntrega());
+        holder.fecha.setText("Fecha Fin:"+ DateFormat.format("yyyy-MM-dd",trabajo.getFechaEntrega()));
 
         if(trabajo.getRequiereIngles()==true)
             holder.enIngles.setChecked(true);
@@ -126,5 +127,12 @@ public class MiAdapter extends BaseAdapter {
         CheckBox enIngles;
 
 
+    }
+    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
+                                   long arg3) {
+
+
+
+        return false;
     }
 }

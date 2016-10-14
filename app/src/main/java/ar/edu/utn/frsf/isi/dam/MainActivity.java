@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         miAdapter = new MiAdapter(getApplicationContext(),Trabajo.TRABAJOS_MOCK);
         lv.setAdapter(miAdapter);
         registerForContextMenu(lv);
+
     }
 
      @Override
@@ -42,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuinfo){
         super.onCreateContextMenu(menu,v,menuinfo);
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.menucontextual,menu);
+
         menu.setHeaderTitle("Acciones");
+        menu.add(0,v.getId(),0,"Postularse a esta oferta");
+        menu.add(0,v.getId(),0,"Compartir esta oferta");
+        //MenuInflater inflater=getMenuInflater();
+        //inflater.inflate(R.menu.menucontextual,menu);
 
     }
 
@@ -57,12 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.mp1) {
+       try{
+       if(item.getItemId() == R.id.mp1) {
             Intent i = new Intent(this,alta_trabajo.class);
             startActivityForResult(i,0);
         }
         return true;
-    }
+
+           }catch (Exception e){
+           return true;
+       }
+       }
     @Override
     protected void onActivityResult(int requestCode, int resultCode,Intent data) {
         if (resultCode == RESULT_OK){
