@@ -1,23 +1,15 @@
 package ar.edu.utn.frsf.isi.dam;
 
-import android.annotation.TargetApi;
-import android.icu.text.DecimalFormat;
-import android.os.Build;
-import android.test.suitebuilder.TestMethod;
-import android.text.format.DateFormat;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.Toast;
 
 
 /**
@@ -70,23 +62,25 @@ public class MiAdapter extends BaseAdapter {
 
         Trabajo trabajo = (Trabajo) trab[position];
         ViewHolder holder;
-        if(convertView==null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_row,null);
+        View item = convertView;
+
+        if(item==null){
+            item = LayoutInflater.from(context).inflate(R.layout.list_row,null);
             holder=new ViewHolder();
 
-            holder.moneda = (ImageView) convertView.findViewById(R.id.tipoMoneda);
-            holder.categoria = (TextView) convertView.findViewById(R.id.categoria);
-            holder.tituloProy = (TextView) convertView.findViewById(R.id.proyecto);
-            holder.hsmax= (TextView) convertView.findViewById(R.id.horasmax);
-            holder.preciohs= (TextView) convertView.findViewById(R.id.$xhora);
-            holder.fecha= (TextView) convertView.findViewById(R.id.fechafin);
-            holder.enIngles= (CheckBox) convertView.findViewById(R.id.ingles);
+            holder.moneda = (ImageView) item.findViewById(R.id.tipoMoneda);
+            holder.categoria = (TextView) item.findViewById(R.id.categoria);
+            holder.tituloProy = (TextView) item.findViewById(R.id.proyecto);
+            holder.hsmax= (TextView) item.findViewById(R.id.horasmax);
+            holder.preciohs= (TextView) item.findViewById(R.id.$xhora);
+            holder.fecha= (TextView) item.findViewById(R.id.fechafin);
+            holder.enIngles= (CheckBox) item.findViewById(R.id.ingles);
 
-            convertView.setTag(holder);
+            item.setTag(holder);
 
         }
         else
-            holder = (ViewHolder) convertView.getTag();
+            holder = (ViewHolder)item.getTag();
 
 
         holder.categoria.setText(trabajo.getCategoria().getDescripcion());
@@ -115,7 +109,20 @@ public class MiAdapter extends BaseAdapter {
         else if(trabajo.getMonedaPago()==5)
             holder.moneda.setImageResource(R.drawable.br);
 
-        return convertView;
+        //Implementamos el método OnLongClickListener que capturará la opción laboral seleccionada
+        item.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View v) {
+
+               Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+        });
+
+
+
+        return item;
     }
     class ViewHolder {
         ImageView moneda;
@@ -128,11 +135,5 @@ public class MiAdapter extends BaseAdapter {
 
 
     }
-    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
-                                   long arg3) {
 
-
-
-        return false;
-    }
 }

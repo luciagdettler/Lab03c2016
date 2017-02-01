@@ -65,7 +65,7 @@
             android:text="Dolar EStadounidense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rb1"
+            android:id="@+id/us"
             android:layout_weight="1"
             android:checked="false" />
 
@@ -73,7 +73,7 @@
             android:text="Euro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rb2"
+            android:id="@+id/eu"
             android:layout_weight="1"
             android:checked="false" />
 
@@ -81,7 +81,7 @@
             android:text="Peso Argentino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rb3"
+            android:id="@+id/ar"
             android:layout_weight="1"
             android:checked="false" />
 
@@ -89,7 +89,7 @@
             android:text="Libra Britanica"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rb4"
+            android:id="@+id/lib"
             android:layout_weight="1"
             android:checked="false" />
 
@@ -97,7 +97,7 @@
             android:text="RealBrasileño"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rb5"
+            android:id="@+id/re"
             android:layout_weight="1"
             android:checked="false" />
     </RadioGroup>

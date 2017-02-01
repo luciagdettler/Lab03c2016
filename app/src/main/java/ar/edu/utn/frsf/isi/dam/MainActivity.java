@@ -1,19 +1,16 @@
 package ar.edu.utn.frsf.isi.dam;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 
@@ -30,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         lv=(ListView) findViewById(R.id.lv);
         miAdapter = new MiAdapter(getApplicationContext(),Trabajo.TRABAJOS_MOCK);
         lv.setAdapter(miAdapter);
-        registerForContextMenu(lv);
 
+        registerForContextMenu(lv);
     }
 
      @Override
@@ -46,10 +43,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu,v,menuinfo);
 
         menu.setHeaderTitle("Acciones");
-        menu.add(0,v.getId(),0,"Postularse a esta oferta");
-        menu.add(0,v.getId(),0,"Compartir esta oferta");
-        //MenuInflater inflater=getMenuInflater();
-        //inflater.inflate(R.menu.menucontextual,menu);
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menucontextual,menu);
 
     }
 
@@ -73,18 +68,18 @@ public class MainActivity extends AppCompatActivity {
            return true;
        }
        }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data) {
-        if (resultCode == RESULT_OK){
-            Trabajo res = (Trabajo) data.getSerializableExtra("resultado");
-            Trabajo[] nuevo = new Trabajo[miAdapter.getTrabajos().length+1];
-            int i;
-            for (i=0;i<miAdapter.getTrabajos().length;i++) {
-                nuevo[i]=miAdapter.getTrabajos()[i];
-            }
-            nuevo[i]=res;
-            miAdapter.setTrabajos(nuevo);
-            miAdapter.notifyDataSetChanged();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Trabajo res = (Trabajo) data.getSerializableExtra("resultado");
+        Trabajo[] nuevo = new Trabajo[miAdapter.getTrabajos().length+1];
+        int i;
+        for (i=0;i<miAdapter.getTrabajos().length;i++) {
+            nuevo[i]=miAdapter.getTrabajos()[i];
         }
+        nuevo[i]=res;
+        miAdapter.setTrabajos(nuevo);
+        miAdapter.notifyDataSetChanged();
+
     }
+
 }
